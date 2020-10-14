@@ -226,19 +226,16 @@
 
         </main><!-- /.container -->
 
-        <footer class="blog-footer">
-          <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-          <p>
-            <a href="#">Back to top</a>
-          </p>
-        </footer>
-        <!-- END BOOTSTRAP BLOG ELEMENTS
 
         <div class="container">
           {% get_menu %}
         </div>
 
+        <!-- MAIN CONTENT -->
         {% block content %}{% endblock %}
+
+        <!-- FOOTER -->
+        {% include "footer.html" %}
 
         {# Global javascript #}
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
