@@ -1,10 +1,36 @@
-var myName = "Richard"
+// Get django data variable
+let blogPosts = JSON.parse(document.getElementById('blogPostsJSON').textContent);
+//String to objects
+let parsedBlogPosts = JSON.parse(blogPosts);
+
+//output div for search results
+let app7 = document.getElementById('app7');
+
+var app6 = new Vue({
+    delimiters: ["[[", "]]"],
+    el: '#app6',
+    data: {
+      message: 'Welcome'
+    },
+    methods: {
+    	searchPosts: function(){
+    		app7.innerHTML = "";
+			for(i=0; i<parsedBlogPosts.length; i++){
+				app7.innerHTML += i; 
+			}
+			
+		}
+    }
+})
+
+/*
+console.log(test_data);
 
 var app = new Vue({
   delimiters: ["[[", "]]"],
   el: '#app',
   data: {
-    message: 'Hello ' + myName + '!'
+    message: 'Hello Richard!'
   }
 })
 
@@ -74,6 +100,6 @@ var app7 = new Vue({
 	}
 })
 
-// Get django data variable
-let jsVariable = JSON.parse(document.getElementById('djangoData').textContent);
-console.log(jsVariable)
+*/
+
+
