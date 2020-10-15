@@ -50,8 +50,14 @@
         {% include "footer.html" %}
 
         {# Global javascript #}
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+        <!-- Only load vue.js on blog-search page -->
+        {% if page %}
+          {% if page.title == "Blog Search" %}
+            <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+            <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+          {% endif %}
+        {% endif %}
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
