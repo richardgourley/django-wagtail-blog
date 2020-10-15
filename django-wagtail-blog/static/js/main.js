@@ -8,15 +8,15 @@ let displaySearchResults = document.getElementById('displaySearchResults');
 
 var app6 = new Vue({
     delimiters: ["[[", "]]"],
-    el: '#app6',
+    el: '#blogSearchInput',
     data: {
       message: 'Welcome'
     },
     methods: {
     	searchPosts: function(){
-    		app7.innerHTML = "";
+    		displaySearchResults.innerHTML = "";
 			for(i=0; i<parsedBlogPosts.length; i++){
-				app7.innerHTML += i; 
+				displaySearchResults.innerHTML += i; 
 			}
 			
 		}
