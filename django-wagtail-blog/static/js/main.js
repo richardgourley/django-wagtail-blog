@@ -14,7 +14,6 @@ var app6 = new Vue({
     },
     methods: {
     	searchPosts: function(){
-    		console.log(this.message);
     		displaySearchResults.innerHTML = "";
 			for(i=0; i<parsedBlogPosts.length; i++){
 				if((parsedBlogPosts[i].title).indexOf(this.message) > -1){
