@@ -26,7 +26,7 @@ var app6 = new Vue({
 				}
 			}
 			if(displaySearchResults.innerHTML == ""){
-				displaySearchResults.innerHTML = "<h3>Sorry. Nothing Found</h3>";
+				displaySearchResults.innerHTML = '<div class="p-3"><h3>Sorry. Nothing Found</h3>';
 			}
 			
 		}
