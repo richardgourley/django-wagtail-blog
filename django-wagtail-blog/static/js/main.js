@@ -4,7 +4,7 @@ let blogPosts = JSON.parse(document.getElementById('blogPostsJSON').textContent)
 let parsedBlogPosts = JSON.parse(blogPosts);
 
 //output div for search results
-let app7 = document.getElementById('app7');
+let displaySearchResults = document.getElementById('displaySearchResults');
 
 var app6 = new Vue({
     delimiters: ["[[", "]]"],
