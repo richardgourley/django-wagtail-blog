@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+<!-- NOTE Here we add a wagtailimages_tags for displaying perfectly sized images -->
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block content %}
+</div>
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+
+      <div class="blog-post border-top">
+        <h2 class="blog-post-title mt-4">{{ page.title }}</h2>
+        <p class="blog-post-meta">{{ page.date }}</p>
+        <div class="mt-4">
+          <!-- richtext tag escapes and displays the body field -->
+          {{ page.body|richtext }}
+
+          {% for item in page.gallery_images.all %}
+            <div style="float:left; margin:10px;">
+                {% image item.image fill-320x240 %}
+                <p>{{ item.caption }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div><!-- /.blog-post -->
+
+      {% if page.tags.all.count %}
+        <div class="container">
+          <h2>Tags:</h2>
+          <div class="tags">
+            {% for tag in page.tags.all %}
+              <a href="{% slugurl 'tags' %}?tag={{ tag }}">
+                <button type="button">{{ tag }}</button>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+    </div><!-- /.blog-main -->
+    
+    <!-- SIDEBAR -->
+    {% include "sidebar.html" %}
+
+  </div><!-- /.row -->
+
+</main><!-- /.container -->
+
+
+{% endblock %}

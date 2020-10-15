@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block body_class %}template-blogsearchpage{% endblock %}
+
+{% block content %}
+
+<!-- Using Django context variable inside Vue.js element -->
+{{ blogPostsJSON|json_script:"blogPostsJSON" }}
+
+</div>
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+
+      <div class="blog-post border-top">
+        <h2 class="blog-post-title mt-4">{{ page.title }}</h2>
+        <div class="mt-4">
+
+          <!-- Vue js -->
+
+          <div id="blogSearchInput">
+            <p><input v-model="message" type="search"></p>
+            <p>Searching for posts starting with:<br><strong>[[ message ]]</strong></p>
+            <button class="btn btn-primary" v-on:click="searchPosts">Search Posts</button>
+          </div>
+
+          <div id="displaySearchResults">
+
+          </div>
+                    
+        </div>
+      </div><!-- /.blog-post -->
+
+      
+
+    </div><!-- /.blog-main -->
+    
+    <!-- SIDEBAR -->
+    {% include "sidebar.html" %}
+
+  </div><!-- /.row -->
+
+</main><!-- /.container -->
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+
+<!-- 3 LATEST BLOG POSTS DISPLAYED AS 1 JUMOTRON AND 2 CARDS -->
+   <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic">{{ blogpage1.title }}</h1>
+      <p class="lead my-3">{{ blogpage1.specific.intro }}</p>
+      <p class="lead mb-0"><a href="{% pageurl blogpages.first %}" class="text-white font-weight-bold">Continue reading...</a></p>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-0">{{ blogpage2.title }}</h3>
+          <div class="mb-1 text-muted">{{ blogpage2.specific.date }}</div>
+          <p class="card-text mb-auto">{{ blogpage2.specific.intro }}</p>
+          <a href="{% pageurl blogpage2 %}" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          {% if blogpage2.specific.main_image %}
+          {% image blogpage2.specific.main_image fill-200x250 %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-0">{{ blogpage3.title }}</h3>
+          <div class="mb-1 text-muted">{{ blogpage3.specific.date }}</div>
+          <p class="card-text mb-auto">{{ blogpage3.specific.intro }}</p>
+          <a href="{% pageurl blogpage3 %}" class="stretched-link">Continue reading</a>
+        </div>
+
+        <div class="col-auto d-none d-lg-block">
+          {% if blogpage3.specific.main_image %}
+          {% image blogpage3.specific.main_image fill-200x250 %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ALL BLOG POSTS IN A LIST WITH SIDEBAR DISPLAYED -->
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+      <h3 class="pb-4 mb-4 font-italic border-bottom">
+        From the Blog
+      </h3>
+
+      <!-- blogpages is in context variable - alternative = 'page.get_children' --->
+      {% for post in blogpages %}
+
+        <!-- 'with' tag caches a complex variable - good for expensive db calls -->
+        <!-- variable in 'with' is only available in with tag -->
+        {% with post=post.specific %}
+          <div class="blog-post">
+            <!-- pageurl is same as url in django - but pageurl takes a wagtail page as arg --->
+            <h2 class="blog-post-title"><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+            <!-- we add main_image from our main image function inside BlogPage in models -->
+
+            {% with post.main_image as main_image %}
+              {% if main_image %}
+              <div class="py-4">
+                {% image main_image fill-160x100 %}
+              </div>
+              {% endif %}
+            {% endwith %}
+
+            <p class="blog-post-meta">{{ post.date }}</p>
+            <!-- Instead of needing post.specific.intro -->
+            <p>{{ post.intro }}</p>
+          </div><!-- /.blog-post -->
+        {% endwith %}
+
+      {% endfor %}
+
+    </div><!-- /.blog-main -->
+    
+    <!-- SIDEBAR -->
+    {% include "sidebar.html" %}
+
+  </div><!-- /.row -->
+
+</main><!-- /.container -->
+
+
+{% endblock %}
+
