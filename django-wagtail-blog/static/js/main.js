@@ -14,9 +14,19 @@ var app6 = new Vue({
     },
     methods: {
     	searchPosts: function(){
+    		console.log(this.message);
     		displaySearchResults.innerHTML = "";
 			for(i=0; i<parsedBlogPosts.length; i++){
-				displaySearchResults.innerHTML += i; 
+				if((parsedBlogPosts[i].title).indexOf(this.message) > -1){
+					displaySearchResults.innerHTML += '<div class="p-3">';
+					displaySearchResults.innerHTML += "<h4>" + parsedBlogPosts[i].title + "</h4>";
+					displaySearchResults.innerHTML += "<small>Date: " + parsedBlogPosts[i].date + "</small>";
+					displaySearchResults.innerHTML += '<p><a href="' + parsedBlogPosts[i].url + '">Read</a></p>';
+					displaySearchResults.innerHTML += '</div>';
+				}
+			}
+			if(displaySearchResults.innerHTML == ""){
+				displaySearchResults.innerHTML = "<h3>Sorry. Nothing Found</h3>";
 			}
 			
 		}
