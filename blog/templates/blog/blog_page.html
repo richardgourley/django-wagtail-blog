@@ -14,6 +14,17 @@
       <div class="blog-post border-top">
         <h2 class="blog-post-title mt-4">{{ page.title }}</h2>
         <p class="blog-post-meta">{{ page.date }}</p>
+        <div>
+          {% with categories=page.categories.all %}
+            {% if categories %}
+              <h4>Posted in:</h4>
+              {% for category in categories %}
+                {% image category.icon fill-32x32 style="vertical-align: middle" %}
+                {{ category.name }}
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
         <div class="mt-4">
           <!-- richtext tag escapes and displays the body field -->
           {{ page.body|richtext }}
@@ -33,7 +44,7 @@
           <div class="tags">
             {% for tag in page.tags.all %}
               <a href="{% slugurl 'tags' %}?tag={{ tag }}">
-                <button type="button">{{ tag }}</button>
+                <button class="btn btn-primary btn-sm" type="button">{{ tag }}</button>
               </a>
             {% endfor %}
           </div>
