@@ -26,6 +26,8 @@ These commands were used after the installation to install dependencies:
 - You can see how {% compress css %} is used to process the link to our bootstrap.scss file, in the home_page.html template.
 - django-libsass is used to pre-compile the scss to css.
 - See settings/base.py to see how they are set up in INSTALLED APPS, STATICFILES_FINDERS and COMPRESS_PRECOMPILERS
+4. pip install mysqlclient
+- Used mysql for this site - base/settings.py for setting up a MySQL database with django.
 
 
 
