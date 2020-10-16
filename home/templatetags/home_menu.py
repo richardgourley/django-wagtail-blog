@@ -7,7 +7,7 @@ register = template.Library()
 def get_menu():
 	site = Site.objects.get(is_default_site=True)
 	home_page = site.root_page
-	pages = home_page.get_children()
+	pages = home_page.get_children().live().in_menu()
 	return {
 	    "home_page":home_page,
 	    "pages":pages,
