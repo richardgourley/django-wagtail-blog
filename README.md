@@ -8,7 +8,7 @@ See https://wagtail.io/
 ## EXTRA FEATURES:
 
 1. Bootstrap - downloaded and added the bootstrap 4 .scss files to allow changing the colors and fonts with variables (see packages used below).
-2. Menu - incorporated a simple menu using Wagtail page hierarchy and a bootstrap menu.
+2. Menu and sidebar - a top navigation menu and a sidebar were created by using template tags and the wagtail .live() and in_menu() methods based on page hirearchy.
 3. VueJS - added Vue for use on a dynamic blog search page. 
 
 Instead of creating a SPA and setting up a REST API, I only wanted to implement Vue.js with a few pages in the application, rather than setting up a SPA with a REST API.
