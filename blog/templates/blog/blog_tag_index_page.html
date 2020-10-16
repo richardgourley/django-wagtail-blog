@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
+<!-- Loads sidebar template tag -->
+{% load sidebar %}
+
 {% block content %}
 </div>
 <main role="main" class="container">
@@ -30,8 +33,8 @@
       </div><!-- /.blog-post -->
     </div><!-- /.blog-main -->
     
-    <!-- SIDEBAR -->
-    {% include "sidebar.html" %}
+    <!-- SIDEBAR - CALLED FROM home/templatetags/sidebar.py -->
+    {% get_sidebar %}
 
   </div><!-- /.row -->
 

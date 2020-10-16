@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
+
+<!-- Loads sidebar template tag -->
+{% load sidebar %}
+
 {% block body_class %}template-blogsearchpage{% endblock %}
 
 {% block content %}
@@ -35,8 +39,8 @@
 
     </div><!-- /.blog-main -->
     
-    <!-- SIDEBAR -->
-    {% include "sidebar.html" %}
+    <!-- SIDEBAR - CALLED FROM home/templatetags/sidebar.py -->
+    {% get_sidebar %}
 
   </div><!-- /.row -->
 
