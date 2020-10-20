@@ -12,9 +12,9 @@
 <!-- 3 LATEST BLOG POSTS DISPLAYED AS 1 JUMOTRON AND 2 CARDS -->
    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic">{{ blogpage1.title }}</h1>
-      <p class="lead my-3">{{ blogpage1.specific.intro }}</p>
-      <p class="lead mb-0"><a href="{% pageurl blogpages.first %}" class="text-white font-weight-bold">Continue reading...</a></p>
+      <h1 class="display-4 font-italic">{{ blog_page1.title }}</h1>
+      <p class="lead my-3">{{ blog_page1.specific.intro }}</p>
+      <p class="lead mb-0"><a href="{% pageurl blog_pages.first %}" class="text-white font-weight-bold">Continue reading...</a></p>
     </div>
   </div>
 
@@ -22,14 +22,14 @@
     <div class="col-md-6">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-          <h3 class="mb-0">{{ blogpage2.title }}</h3>
-          <div class="mb-1 text-muted">{{ blogpage2.specific.date }}</div>
-          <p class="card-text mb-auto">{{ blogpage2.specific.intro }}</p>
-          <a href="{% pageurl blogpage2 %}" class="stretched-link">Continue reading</a>
+          <h3 class="mb-0">{{ blog_page2.title }}</h3>
+          <div class="mb-1 text-muted">{{ blog_page2.specific.date }}</div>
+          <p class="card-text mb-auto">{{ blog_page2.specific.intro }}</p>
+          <a href="{% pageurl blog_page2 %}" class="stretched-link">Continue reading</a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          {% if blogpage2.specific.main_image %}
-          {% image blogpage2.specific.main_image fill-200x250 %}
+          {% if blog_page2.specific.main_image %}
+          {% image blog_page2.specific.main_image fill-200x250 %}
           {% endif %}
         </div>
       </div>
@@ -37,15 +37,15 @@
     <div class="col-md-6">
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-          <h3 class="mb-0">{{ blogpage3.title }}</h3>
-          <div class="mb-1 text-muted">{{ blogpage3.specific.date }}</div>
-          <p class="card-text mb-auto">{{ blogpage3.specific.intro }}</p>
-          <a href="{% pageurl blogpage3 %}" class="stretched-link">Continue reading</a>
+          <h3 class="mb-0">{{ blog_page3.title }}</h3>
+          <div class="mb-1 text-muted">{{ blog_page3.specific.date }}</div>
+          <p class="card-text mb-auto">{{ blog_page3.specific.intro }}</p>
+          <a href="{% pageurl blog_page3 %}" class="stretched-link">Continue reading</a>
         </div>
 
         <div class="col-auto d-none d-lg-block">
-          {% if blogpage3.specific.main_image %}
-          {% image blogpage3.specific.main_image fill-200x250 %}
+          {% if blog_page3.specific.main_image %}
+          {% image blog_page3.specific.main_image fill-200x250 %}
           {% endif %}
         </div>
       </div>
@@ -62,7 +62,7 @@
       </h3>
 
       <!-- blogpages is in context variable - alternative = 'page.get_children' --->
-      {% for post in blogpages %}
+      {% for post in blog_pages %}
 
         <!-- 'with' tag caches a complex variable - good for expensive db calls -->
         <!-- variable in 'with' is only available in with tag -->
