@@ -9,7 +9,7 @@
 {% block content %}
 
 <!-- Using Django context variable inside Vue.js element -->
-{{ blogPostsJSON|json_script:"blogPostsJSON" }}
+{{ blog_posts_JSON|json_script:"blog_posts_JSON" }}
 
 </div>
 <main role="main" class="container">
@@ -24,7 +24,7 @@
 
           <div id="blogSearchInput">
             <p><input v-model="message" type="search"></p>
-            <p>Searching for posts starting with:<br><strong>[[ message ]]</strong></p>
+            <p>Searching for posts containing:<br><strong>[[ message ]]</strong></p>
             <button class="btn btn-primary" v-on:click="searchPosts">Search Posts</button>
           </div>
 
