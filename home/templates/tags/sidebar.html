@@ -9,12 +9,21 @@
   <div class="p-4">
     <h4 class="font-italic">Recent Posts</h4>
     <ol class="list-unstyled mb-0">
-      {% for post in blogpages %}
+      {% for post in blog_pages %}
         <li><p><a href="{% pageurl post %}">{{ post.title }}</a><p></li>
         <li><small>{{ post.date }}</small></li>
         <li>{{ post.intro }}</li>
         <hr>
       {% endfor %}
+    </ol>
+  </div>
+
+  <div class="p-4">
+    <h4 class="font-italic">Blog Posts by Tag</h4>
+    <ol class="list-unstyled">
+    {% for tag in blog_tags %}
+      <li><a href="/tags/?tag={{ tag }}">{{ tag }}</a></li>
+    {% endfor %}
     </ol>
   </div>
 
