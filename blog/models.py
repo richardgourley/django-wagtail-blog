@@ -45,15 +45,18 @@ class BlogIndexPage(Page):
     def get_context(self, request):
         # Update context to include only published posts, ordered by reverse-chron
         context = super().get_context(request)
-        blogpages = self.get_children().live().order_by('-first_published_at')
-        blogpage1 = blogpages[0]
-        blogpage2 = blogpages[1]
-        blogpage3 = blogpages[2]
-        context['blogpage1'] = blogpage1
-        context['blogpage2'] = blogpage2
-        context['blogpage3'] = blogpage3
-        context['blogpages'] = blogpages
+        blog_pages = self.get_children().live().order_by('-first_published_at')
+        # For the template, the first 3 blog posts are displayed uniquely
+        blog_page1 = blog_pages[0]
+        blog_page2 = blog_pages[1]
+        blog_page3 = blog_pages[2]
+        context['blog_page1'] = blog_page1
+        context['blog_page2'] = blog_page2
+        context['blog_page3'] = blog_page3
+        # ... here we return all blog posts separately
+        context['blog_pages'] = blog_pages
         return context
+
 
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
@@ -68,27 +71,33 @@ class BlogTagIndexPage(Page):
     def get_context(self, request):
         # Filter by tag
         tag = request.GET.get('tag')
-        blogpages = BlogPage.objects.filter(tags__name=tag)
+        blog_pages = BlogPage.objects.filter(tags__name=tag)
 
         # Update template context
         context = super().get_context(request)
-        context['blogpages'] = blogpages
+        context['blogpages'] = blog_pages
         return context
+
 
 class BlogSearchPage(Page):
     def get_context(self, request):
-        blogPostList = []
-        blogPosts = BlogPage.objects.all()
-        for post in blogPosts:
-            postDict = {}
-            postDict["title"] = post.title
-            postDict["date"] = str(post.date)
-            postDict["url"] = post.url
-            blogPostList.append(postDict)
+        blog_post_list = []
+        blog_posts = BlogPage.objects.all()
+        '''
+        Create a post_dict (object) of details for each blog post
+        Passed to our blog_post_list (a list of blog objects)...
+        ... passed to be used with Vue.js in our search page
+        '''
+        for post in blog_posts:
+            post_dict = {}
+            post_dict["title"] = post.title
+            post_dict["date"] = str(post.date)
+            post_dict["url"] = post.url
+            blog_post_list.append(post_dict)
 
-        blogPostsJSON = dumps(blogPostList)
+        blog_posts_json = dumps(blog_post_list)
         context = super().get_context(request)
-        context['blogPostsJSON'] = blogPostsJSON
+        context['blog_posts_json'] = blog_posts_json
         
         return context
 
@@ -122,6 +131,10 @@ class BlogPage(Page):
         FieldPanel('body', classname="full"),
         InlinePanel('gallery_images', label="Gallery images")
     ]
+
+    
+
+
 
 # Orderable adds a sort_order field to the model - allows image sorting
 class BlogPageGalleryImage(Orderable):
