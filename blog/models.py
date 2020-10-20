@@ -95,9 +95,9 @@ class BlogSearchPage(Page):
             post_dict["url"] = post.url
             blog_post_list.append(post_dict)
 
-        blog_posts_json = dumps(blog_post_list)
+        blog_posts_JSON = dumps(blog_post_list)
         context = super().get_context(request)
-        context['blog_posts_json'] = blog_posts_json
+        context['blog_posts_JSON'] = blog_posts_JSON
         
         return context
 
