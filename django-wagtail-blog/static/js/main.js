@@ -1,5 +1,5 @@
 // Get django data variable
-let blogPosts = JSON.parse(document.getElementById('blogPostsJSON').textContent);
+let blogPosts = JSON.parse(document.getElementById('blog_posts_JSON').textContent);
 //String to objects
 let parsedBlogPosts = JSON.parse(blogPosts);
 
