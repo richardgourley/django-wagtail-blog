@@ -75,7 +75,7 @@ class BlogTagIndexPage(Page):
 
         # Update template context
         context = super().get_context(request)
-        context['blogpages'] = blog_pages
+        context['blog_pages'] = blog_pages
         return context
 
 
