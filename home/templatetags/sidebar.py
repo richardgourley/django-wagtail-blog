@@ -14,12 +14,13 @@ def get_sidebar():
     Gets all blog pages and 'unique' tags used with our blog pages...
     which we use in our sidebar menu - "tags/sidebar.html"
     '''
-    blog_tags = []
+    all_tags = []
     blog_pages = BlogPage.objects.live().order_by('-first_published_at')
     for page in blog_pages:
         for tag in page.tags.all():
-            if not tag in blog_tags:
-                blog_tags.append(tag)
+            all_tags.append(tag)
+    
+    blog_tags = { tag for tag in all_tags }
     
     return {
         "blog_pages":blog_pages,
