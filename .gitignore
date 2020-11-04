@@ -1,8 +1,8 @@
 # Ignore .ev file
-.ev
+.env
 
 # Ignore docker files for this project - using virtualenv
-DockerFile
+Dockerfile
 .dockerignore
 
 # Ignore auto generated folders
